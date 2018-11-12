@@ -30,6 +30,7 @@ endif
 all: zstd
 
 zstd:
+	${MIX} deps.get
 	$(MIX) compile
 
 priv/nif_ex_zstd.so: c_src/nif_ex_zstd.c

@@ -4,7 +4,7 @@ defmodule Zstd.MixProject do
   def project do
     [
       app: :ex_zstd,
-      deps: deps(),
+      deps: deps(Mix.env()),
       elixir: "~> 1.7",
       version: "0.1.0",
       package: package(),
@@ -16,10 +16,15 @@ defmodule Zstd.MixProject do
     ]
   end
 
-  defp deps do
+  defp deps(:publish) do
     [
-      {:ex_doc, ">= 0.0.0", only: :dev},
-      {:libzstd, "~> 1.3.7", only: :dev, github: "facebook/zstd", app: false}
+      {:ex_doc, ">= 0.0.0"}
+    ]
+  end
+
+  defp deps(_) do
+    [
+      {:libzstd, "~> 1.3.7", github: "facebook/zstd", app: false}
     ]
   end
 
