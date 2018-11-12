@@ -1,4 +1,4 @@
-defmodule Zstd do
+defmodule ExZstd do
   @moduledoc """
   Elixir binding of the Zstandard library
   """
@@ -9,7 +9,7 @@ defmodule Zstd do
   @spec __init__() :: :ok
   def __init__ do
     dir = :code.priv_dir(unquote(app))
-    :ok = :erlang.load_nif(:filename.join(dir, 'nif_zstd'), 0)
+    :ok = :erlang.load_nif(:filename.join(dir, 'nif_ex_zstd'), 0)
   end
 
   @doc """

@@ -11,10 +11,10 @@ SCRIPT = io:format("~s", [lists:concat([  \
 ERLANG = $(shell erl -eval '$(SCRIPT)' -s init stop -noshell)
 CFLAGS += -I$(ERLANG)
 
-ifeq ($(wildcard deps/zstd),)
-	ZSTD_PATH = ../zstd
+ifeq ($(wildcard deps/libzstd),)
+	ZSTD_PATH = ../libzstd
 else
-	ZSTD_PATH = deps/zstd
+	ZSTD_PATH = deps/libzstd
 endif
 
 CFLAGS += -I$(ZSTD_PATH)/lib
@@ -32,11 +32,11 @@ all: zstd
 zstd:
 	$(MIX) compile
 
-priv/nif_zstd.so: src/nif_zstd.c
+priv/nif_ex_zstd.so: c_src/nif_ex_zstd.c
 	$(MAKE) -C $(ZSTD_PATH) lib-release
-	$(CC) $(CFLAGS) -shared $(LDFLAGS) -o $@ src/nif_zstd.c $(ZSTD_PATH)/lib/libzstd.a
+	$(CC) $(CFLAGS) -shared $(LDFLAGS) -o $@ c_src/nif_ex_zstd.c $(ZSTD_PATH)/lib/libzstd.a
 
 clean:
 	$(MIX) clean
 	$(MAKE) -C $(ZSTD_PATH) clean
-	$(RM) -vrf priv/nif_zstd.so*
+	$(RM) -vrf priv/nif_ex_zstd.so*

@@ -3,18 +3,32 @@ defmodule Zstd.MixProject do
 
   def project do
     [
-      app: :zstd,
+      app: :ex_zstd,
       deps: deps(),
       elixir: "~> 1.7",
       version: "0.1.0",
+      package: package(),
       compilers: compilers(),
+      source_url: "https://github.com/chenzhuoyu/elixir-zstd",
+      description: description(),
+      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod
     ]
   end
 
   defp deps do
     [
-      {:zstd, github: "facebook/zstd", app: false}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:libzstd, "~> 1.3.7", only: :dev, github: "facebook/zstd", app: false}
+    ]
+  end
+
+  defp package do
+    [
+      name: "ex_zstd",
+      files: ~w(lib c_src test .formatter.exs Makefile mix.exs README.md),
+      links: %{"GitHub" => "https://github.com/chenzhuoyu/elixir-zstd"},
+      licenses: ["BSD"]
     ]
   end
 
@@ -25,6 +39,10 @@ defmodule Zstd.MixProject do
       :app
     ]
   end
+
+  defp description do
+    "Elixir binding of the Zstandard library"
+  end
 end
 
 defmodule Mix.Tasks.Compile.Zstd do
@@ -34,7 +52,7 @@ defmodule Mix.Tasks.Compile.Zstd do
       exit(1)
     else
       File.mkdir_p("priv")
-      {result, _code} = System.cmd("make", ["priv/nif_zstd.so"], stderr_to_stdout: true)
+      {result, _code} = System.cmd("make", ["priv/nif_ex_zstd.so"], stderr_to_stdout: true)
       IO.binwrite(result)
     end
   end

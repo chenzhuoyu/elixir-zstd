@@ -110,7 +110,7 @@ static int _zstd_init(ErlNifEnv *self)
     /* cstream type */
     _zstd_cstream_type = enif_open_resource_type(
         self,
-        "Elixir.Zstd",
+        "Elixir.ExZstd",
         "CompressStream",
         _zstd_cstream_dtor,
         ERL_NIF_RT_CREATE | ERL_NIF_RT_TAKEOVER,
@@ -120,7 +120,7 @@ static int _zstd_init(ErlNifEnv *self)
     /* cstream type */
     _zstd_dstream_type = enif_open_resource_type(
         self,
-        "Elixir.Zstd",
+        "Elixir.ExZstd",
         "DecompressStream",
         _zstd_dstream_dtor,
         ERL_NIF_RT_CREATE | ERL_NIF_RT_TAKEOVER,
@@ -507,7 +507,7 @@ static ERL_NIF_TERM _zstd_simple_decompress(ErlNifEnv *self, int argc, const ERL
 }
 
 ERL_NIF_INIT(
-    Elixir.Zstd,        /* module name */
+    Elixir.ExZstd,      /* module name */
     _zstd_exports,      /* export table */
     _zstd_on_load,      /* on load */
     _zstd_on_reload,    /* on reload */
