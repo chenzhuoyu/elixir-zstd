@@ -1,0 +1,3 @@
+%{
+  "zstd": {:git, "https://github.com/facebook/zstd.git", "09a2dbf1e83f0ac3b71c9feb13a538fd98b52baa", []},
+}
