@@ -10,11 +10,11 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :zstd, key: :value
+#     config :ex_zstd, key: :value
 #
 # and access this configuration in your application as:
 #
-#     Application.get_env(:zstd, :key)
+#     Application.get_env(:ex_zstd, :key)
 #
 # You can also configure a 3rd-party app:
 #
