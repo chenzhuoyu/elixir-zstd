@@ -59,6 +59,7 @@ defmodule Mix.Tasks.Compile.ExZstd do
       File.mkdir_p("priv")
       {result, _code} = System.cmd("make", ["priv/nif_ex_zstd.so"], stderr_to_stdout: true)
       IO.binwrite(result)
+      Mix.Project.build_structure
     end
   end
 end
