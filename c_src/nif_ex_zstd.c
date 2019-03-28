@@ -393,13 +393,6 @@ static ERL_NIF_TERM _zstd_stream_decompress(ErlNifEnv *self, int argc, const ERL
             outbuf.dst = out.data + outbuf.pos;
             outbuf.size = out.size;
         }
-        fprintf(stderr, "pos: %zu/%zu, %zu/%zu, %d %d %d %d\r\n",
-            outbuf.pos, outbuf.size, inbuf.pos, inbuf.size,
-            ((const unsigned char *)inbuf.src)[0],
-            ((const unsigned char *)inbuf.src)[1],
-            ((const unsigned char *)inbuf.src)[2],
-            ((const unsigned char *)inbuf.src)[3]
-        );
 
         /* decompress one frame */
         if (ZSTD_isError(ret = ZSTD_decompressStream(*pzds, &outbuf, &inbuf)))

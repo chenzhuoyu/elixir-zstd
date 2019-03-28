@@ -1,4 +1,4 @@
-defmodule Zstd.MixProject do
+defmodule ExZstd.MixProject do
   use Mix.Project
 
   def project do
@@ -39,7 +39,7 @@ defmodule Zstd.MixProject do
 
   defp compilers do
     [
-      :zstd,
+      :ex_zstd,
       :elixir,
       :app
     ]
@@ -50,7 +50,7 @@ defmodule Zstd.MixProject do
   end
 end
 
-defmodule Mix.Tasks.Compile.Zstd do
+defmodule Mix.Tasks.Compile.ExZstd do
   def run(_) do
     if match?({:win32, _}, :os.type()) do
       IO.warn("Windows is not supported")
@@ -59,6 +59,7 @@ defmodule Mix.Tasks.Compile.Zstd do
       File.mkdir_p("priv")
       {result, _code} = System.cmd("make", ["priv/nif_ex_zstd.so"], stderr_to_stdout: true)
       IO.binwrite(result)
+      Mix.Project.build_structure
     end
   end
 end

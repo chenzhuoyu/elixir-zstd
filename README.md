@@ -1,4 +1,4 @@
-# Zstd
+# ExZstd
 
 Elixir binding of the Zstandard library
 
