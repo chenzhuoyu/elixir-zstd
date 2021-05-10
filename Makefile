@@ -18,7 +18,7 @@ else
 endif
 
 CFLAGS += -I$(ZSTD_PATH)/lib
-CFLAGS += -fPIC -flto=full
+CFLAGS += -fPIC -flto
 CFLAGS += -DZSTD_STATIC_LINKING_ONLY
 
 ifeq ($(shell uname),Darwin)
